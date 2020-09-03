@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import HomeScreen from "./components/HomeScreen";
-import DetailsScreen from "./components/DetailsScreen";
+import HomeScreen from "./components/home-screen";
+import DetailsScreen from "./components/details-screen";
 
 const NotFound = () => <h1>404.. This page is not found!</h1>;
 const Routes = () => (

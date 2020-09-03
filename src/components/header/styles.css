@@ -1,0 +1,25 @@
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(var(--tmdbDarkBlue), 1);
+  height: 64px;
+  width: 100vw;
+  z-index: 1;
+  transition: top 0.2s linear;
+  background-color: black;
+}
+.sticky {
+  top: -64px;
+}
+
+.img-logo {
+  width: 60px;
+  margin-right: 10px;
+}
+h1 {
+  color: white;
+}
