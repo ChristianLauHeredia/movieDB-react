@@ -1,6 +1,5 @@
 .header-container {
   display: flex;
-  justify-content: center;
   align-items: center;
   position: fixed;
   top: 0;
@@ -18,7 +17,7 @@
 
 .img-logo {
   width: 60px;
-  margin-right: 10px;
+  margin: 0 10px 0 15px;
 }
 h1 {
   color: white;
