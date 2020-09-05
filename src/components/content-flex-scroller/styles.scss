@@ -1,0 +1,37 @@
+.content-scroller-container {
+  height: 100vh;
+  position: relative;
+  background: rgb(255,255,255);
+  width: 100%;
+  .container-wrapper {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+  .content-flex-scroller {
+    width: 100%;
+    max-width: 1300px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    margin: 0 auto 20px;
+  
+  }
+  
+  h2 {
+    font-size: 48px;
+    max-width: 1300px;
+    padding-left: 20px;
+    margin: 0 auto 50px;
+  }
+  
+  .color-white {
+    color: white;
+  }
+}
+.container-bg-color {
+  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(0,0,0,1) calc(100% - 64px));
+}

@@ -1,10 +1,10 @@
 import React from "react";
 import ContentScrollerComponent from "./../content-flex-scroller";
-import "./styles.css";
+import "./styles.scss";
 
 const HomeScreen = () =>  {
   return (
-    <div className="container">
+    <>
       <ContentScrollerComponent
         title="What's Popular"
         hasBackground
@@ -18,7 +18,7 @@ const HomeScreen = () =>  {
         title="In Theaters"
         customParams="/movie/now_playing"
       />
-    </div>
+    </>
   );
 }
 

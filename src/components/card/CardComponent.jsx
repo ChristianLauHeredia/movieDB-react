@@ -1,31 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./styles.css";
+import { CircularProgressbar } from 'react-circular-progressbar';
+import HeartComponent from "./../heart";
+import "./styles.scss";
 
 const CardComponent = props => {
-  const { title, poster_path, id } = props.movieInfo;
-  console.log(props.movieInfo)
+  const { title, poster_path, id, vote_average } = props.movieInfo;
+  // console.log(props.movieInfo)
 
-  const [imageLoaded, setImageLoaded]=React.useState(false);
-  
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
-    <div className="card-container">
+    <div className="card-component-container">
+      {
+        // Show this if image is loading
+        !imageLoaded && <p>Loading...</p>
+      }
       <Link to={`/show/${id}`}>
         <img
           src={`https://image.tmdb.org/t/p/w154${poster_path}`}
-          className={`card-img image-${imageLoaded ? 'visible' : 'hidden'}`}
+          className={`card-img card-image-${imageLoaded ? 'visible' : 'hidden'}`}
           alt={title}
           onLoad={()=> setImageLoaded(true)}
         />
       </Link>
-      {
-        !imageLoaded && <p>Loading...</p>
-      }
+      <div>
+        <CircularProgressbar
+          value={vote_average*10}
+          text={vote_average}
+          background
+        />
+        <HeartComponent id={id} />
+      </div>
       <p>{title}</p>
-      {
-        //TODO circle rate component
-        //TODO like movie
-      }
     </div>
   )
 }

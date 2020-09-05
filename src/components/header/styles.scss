@@ -10,15 +10,14 @@
   z-index: 1;
   transition: top 0.2s linear;
   background-color: black;
+  .img-logo {
+    width: 60px;
+    margin: 0 10px 0 15px;
+  }
+  h1 {
+    color: white;
+  }
 }
-.sticky {
+.header-container.sticky {
   top: -64px;
-}
-
-.img-logo {
-  width: 60px;
-  margin: 0 10px 0 15px;
-}
-h1 {
-  color: white;
 }

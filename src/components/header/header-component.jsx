@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./styles.css";
+import "./styles.scss";
 import cowIcon from "./../../assets/images/cow-icon.png";
 
 const HeaderComponent = () => {
