@@ -5,7 +5,7 @@ const CardComponent = lazy(() => import("./../card"));
 import "./styles.scss";
 
 const ContentScrollerComponent = props => {
-  const { title, hasBackground, customParams } = props;
+  const { title, hasBackground, customParams, errorMsg="" } = props;
   const [movies, setMovies] = useState([]);
 
   useEffect( () => {
@@ -27,7 +27,7 @@ const ContentScrollerComponent = props => {
   
   return movies.length > 0 ? (
     <div className={`content-scroller-container ${hasBackground && 'container-bg-color'}`}>
-      <h2 className={hasBackground && 'color-white'}>{title}</h2>
+      <h2>{title}</h2>
       <div className="content-flex-scroller">
         <Suspense fallback={
           <div className="content-flex-scroller-loader-container">
@@ -43,7 +43,7 @@ const ContentScrollerComponent = props => {
         </Suspense>
       </div>
     </div>
-  ) : null
+  ) : <p>{errorMsg}</p>
 }
 
 export default ContentScrollerComponent;

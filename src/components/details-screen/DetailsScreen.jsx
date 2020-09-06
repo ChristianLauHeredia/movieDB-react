@@ -1,20 +1,20 @@
 import React, { useState, useEffect, lazy, Suspense  } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, withRouter } from "react-router-dom";
 import { getMovieDetails } from "./../../services/data-request";
 import BlurredBackgroundColorComponent from "./../custom-background-color";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import HeartComponent from "./../heart";
-import ContentScrollerComponent from "./../content-flex-scroller";
 import Loader from 'react-loader-spinner';
 const PosterImageComponent = lazy(() => import("./../poster-image"));
 import "./styles.scss";
 
 const urlBackdropImg = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces";
+const posterBaseUrl = "https://image.tmdb.org/t/p/w154";
 
-const DetailsScreen = () => {
+const DetailsScreen = props => {
   const [movie, setMovie] = useState({});
   const [bgUrl, setBGUrl] = useState("");
-  const [movieLoaded, setLoading] = useState(false);
+  const [posterUrl, setPosterUrl] = useState("");
   const { id } = useParams();
 
   useEffect( () => {
@@ -22,47 +22,52 @@ const DetailsScreen = () => {
   }, []);
 
   useEffect( () => {
-    if(movie.backdrop_path) {
-      setBGUrl(`${urlBackdropImg}${movie.backdrop_path}`)
-      setLoading(true)
-    }
+    if(movie.backdrop_path) setBGUrl(`${urlBackdropImg}${movie.backdrop_path}`)
+    if(movie.poster_path) setPosterUrl(`${posterBaseUrl}${movie.poster_path}`)
   }, [movie]);
 
   // Get Show data
   const getMovie = async () => {
-    setMovie(await getMovieDetails(id));
+    const movieData = await getMovieDetails(id);
+    if (movieData.title) setMovie(movieData);
+    else props.history.push('/');
   }
 
+  // Return show genres
   const mapGenres = genres => (
     genres.map((genre, index) => <span key={genre.id}>{`${genre.name}${index + 1 === genres.length ? '.' : ', '}`}</span>)
   )
 
+  // Return runtime in hours
   const formatRuntime = runtime => {
     const min = runtime % 60;
     const hour = (runtime - min) / 60;
     return <span>{`${hour}h ${min}m - `}</span>
   }
 
+  // Return the details of the show
   const detailsDataComponent = () => (
     <>
       <h2>
         {movie.title}
-        {
-          movie.release_date && <span>{` (${movie.release_date.split('-')[0]}).`}</span>
-        }
+        {movie.release_date && <span>{` (${movie.release_date.split('-')[0]}).`}</span>}
       </h2>
       <p>
-        {movie.runtime && formatRuntime(movie.runtime)}
+        {movie.runtime !== 0 && formatRuntime(movie.runtime)}
         {movie.genres && mapGenres(movie.genres)}
       </p>
-      <div className="score-container">
-        <CircularProgressbar
-          value={movie.vote_average*10}
-          text={movie.vote_average}
-          background
-        />
-        <span>User Score</span>
-      </div>
+      {
+        movie.vote_average !== 0 && (
+          <div className="score-container">
+            <CircularProgressbar
+              value={movie.vote_average*10}
+              text={movie.vote_average}
+              background
+            />
+            <span>User Score</span>
+          </div>
+        )
+      }
       <div className="overview-container">
         <h3>Overview</h3>
         <p>{movie.overview}</p>
@@ -82,11 +87,11 @@ const DetailsScreen = () => {
     </div>
   )
 
-  return movieLoaded ? (
+  return (
     <>
       <div className="details-component-header" style={bgUrl?{backgroundImage:`url(${bgUrl})`}:{}}>
         <BlurredBackgroundColorComponent
-          url={bgUrl}
+          url={posterUrl}
         >
           <div className="details-container">
             <Suspense fallback={
@@ -113,12 +118,8 @@ const DetailsScreen = () => {
         </BlurredBackgroundColorComponent>
       </div>
       {mobileViewDetails()}
-      <ContentScrollerComponent
-        title="Similar Shows"
-        customParams={`/movie/${id}/similar`}
-      />
     </>
-  ) : null;
+  )
 }
 
-export default DetailsScreen;
+export default withRouter(DetailsScreen);

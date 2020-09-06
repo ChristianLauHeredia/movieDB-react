@@ -8,16 +8,16 @@
   z-index: 1;
   transition: top 0.2s linear;
   background-color: black;
+  display: flex;
+  align-items: center;
   a {
     display: flex;
     align-items: center;
     height: 64px;
     text-decoration: none;
-    .img-logo {
-      width: 60px;
-      margin: 0 10px 0 15px;
-    }
+    margin: 0 auto;
     .header-text {
+      font-family: 'Orbitron', sans-serif;
       color: white;
     }
   }

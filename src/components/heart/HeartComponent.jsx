@@ -10,6 +10,7 @@ const HeartComponent = props => {
     setFavorite(checkFavorite(+id));
   }, [])
 
+  // Add or remove id to localstorage
   const handleHeartClick = () => {
     if(!isFavorite) setFavorite(saveFavorite(+id))
     else setFavorite(removeFavorite(+id))

@@ -1,5 +1,6 @@
+@import "./../../styles/media-queries";
+
 .content-scroller-container {
-  background: rgb(255,255,255);
   width: 100%;
   padding-top: 100px;
   .content-flex-scroller {
@@ -11,7 +12,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     align-content: flex-start;
-    margin: 0 auto 20px;
+    margin: 0 auto;
     .content-flex-scroller-loader-container {
       width: 100%;
       padding: 50px;
@@ -19,16 +20,14 @@
     }
   }
   h2 {
-    font-size: 48px;
+    font-size: 32px;
     max-width: 1300px;
     padding-left: 20px;
     margin: 0 auto 50px;
-    @media (max-width: 768px) {
-      font-size: 32px;
-    }
-  }
-  .color-white {
     color: white;
+    @media (max-width: $breakpoint-mobile) {
+      font-size: 24px;
+    }
   }
 }
 .container-bg-color {

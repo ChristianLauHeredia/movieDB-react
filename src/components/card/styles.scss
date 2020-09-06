@@ -1,8 +1,18 @@
+@import "./../../styles/colors";
+@import "./../../styles/media-queries";
+
 .card-component-container {
   width: 150px;
   min-width: 150px;
   margin-left: 20px;
   position: relative;
+  p {
+    color: $primary-color;
+    margin: 40px 0 0 0;
+    @media (max-width: $breakpoint-mobile) {
+      font-size: 14px;
+    }
+  }
   .card-loader-container {
     width: 150px;
     height: 125px;

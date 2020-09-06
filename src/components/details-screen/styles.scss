@@ -1,8 +1,12 @@
+@import "./../../styles/colors";
+@import "./../../styles/media-queries";
+
 .details-component-header {
   margin-top: 64px;
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   .details-container {
     max-width: 1300px;
     display: flex;
@@ -16,7 +20,7 @@
         position: absolute;
         left: 200px;
         top: 0;
-        @media (max-width: 768px) {
+        @media (max-width: $breakpoint-mobile) {
           left: 75px;
           top: -25px;
         }
@@ -26,9 +30,11 @@
 }
 
 .details-data {
+  color: $primary-color;
   display: none;
   .overview-container {
     text-align: left;
+    letter-spacing: .5px
   }
   .score-container {
     span {
@@ -60,16 +66,22 @@
 }
 
 .details-desk-container {
-  color: white;
   padding: 40px 60px;
-  @media (min-width: 769px) {
+  @media (min-width: $breakpoint-mobile +1) {
     display: block;
   }
 }
 .details-mobile-container {
   text-align: center;
   padding: 20px 30px;
-  @media (max-width: 768px) {
+  p {
+    color: $secondary-color;
+  }
+  .overview-container{
+    border-top: 1px  solid $secondary-color;
+    margin-top: 20px;
+  }
+  @media (max-width: $breakpoint-mobile) {
     display: block;
   }
 }

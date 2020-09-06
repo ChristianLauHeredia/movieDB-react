@@ -7,7 +7,6 @@ const HomeScreen = () =>  {
     <>
       <ContentScrollerComponent
         title="What's Popular"
-        hasBackground
         customParams="/movie/popular"
       />
       <ContentScrollerComponent

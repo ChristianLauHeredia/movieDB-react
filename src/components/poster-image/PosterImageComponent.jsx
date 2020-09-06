@@ -4,7 +4,8 @@ import "./styles.scss";
 const PosterImageComponent = props => {
   const { title, poster_path, bigSize } = props;
 
-  return (
+  // If path not empty returns image
+  return poster_path ? (
     <picture>
       <source media="(max-width:768px)"
         srcSet={`https://image.tmdb.org/t/p/w154${poster_path}`}
@@ -15,7 +16,7 @@ const PosterImageComponent = props => {
         alt={title}
       />
     </picture>
-  )
+  ) : null
 }
 
 export default PosterImageComponent;
