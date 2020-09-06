@@ -7,12 +7,12 @@ const HeartComponent = props => {
   const [isFavorite, setFavorite] = useState(false);
 
   useEffect(() => {
-    setFavorite(checkFavorite(id));
+    setFavorite(checkFavorite(+id));
   }, [])
 
   const handleHeartClick = () => {
-    if(!isFavorite) setFavorite(saveFavorite(id))
-    else setFavorite(removeFavorite(id))
+    if(!isFavorite) setFavorite(saveFavorite(+id))
+    else setFavorite(removeFavorite(+id))
   }
 
   return <Heart isClick={isFavorite} onClick={() => handleHeartClick()} />

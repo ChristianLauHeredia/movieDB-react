@@ -1,13 +1,7 @@
 .content-scroller-container {
-  height: 100vh;
-  position: relative;
   background: rgb(255,255,255);
   width: 100%;
-  .container-wrapper {
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-  }
+  padding-top: 100px;
   .content-flex-scroller {
     width: 100%;
     max-width: 1300px;
@@ -18,16 +12,21 @@
     align-items: flex-start;
     align-content: flex-start;
     margin: 0 auto 20px;
-  
+    .content-flex-scroller-loader-container {
+      width: 100%;
+      padding: 50px;
+      text-align: center;
+    }
   }
-  
   h2 {
     font-size: 48px;
     max-width: 1300px;
     padding-left: 20px;
     margin: 0 auto 50px;
+    @media (max-width: 768px) {
+      font-size: 32px;
+    }
   }
-  
   .color-white {
     color: white;
   }

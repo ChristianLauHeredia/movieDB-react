@@ -8,8 +8,8 @@ import "./styles/index.scss";
 ReactDOM.render(
   // Shows fallback fallback until Routes is loaded
   <Suspense fallback={<span>Loading ...</span>}>
-    <Header />
     <HashRouter>
+      <Header />
       <Routes />
     </HashRouter>
   </Suspense>

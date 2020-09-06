@@ -14,13 +14,13 @@ export async function getCustomQuery (customParams, page = 1) {
   return data;
 }
 
-// export async function getMovieDetails (id) {
-//   const data = await axios.get(`${base_url}/movie/${id}?api_key=${api_key}&language=en-EN`)
-//     .then((result) => {
-//       return(result.data);
-//     })
-//     .catch(() => {
-//       return null;
-//     })
-//   return data;
-// }
+export async function getMovieDetails (id) {
+  const data = await axios.get(`${base_url}/movie/${id}?api_key=${api_key}&language=en-EN`)
+    .then((result) => {
+      return(result.data);
+    })
+    .catch(() => {
+      return null;
+    })
+  return data;
+}
