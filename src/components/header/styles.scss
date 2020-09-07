@@ -1,4 +1,5 @@
 @import "./../../styles/colors";
+@import "./../../styles/media-queries";
 
 .header-container {
   position: fixed;
@@ -21,6 +22,12 @@
     .header-text {
       font-family: 'Orbitron', sans-serif;
       color: $primary-color;
+    }
+    @media (max-width: $breakpoint-mobile) {
+      margin:0 20px;
+      .header-text {
+        font-size: 24px;   
+      }
     }
   }
   .lang-container {
