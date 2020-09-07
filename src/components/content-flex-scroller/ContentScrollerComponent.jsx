@@ -51,12 +51,15 @@ const ContentScrollerComponent = props => {
     <div className={`content-scroller-container ${hasBackground && 'container-bg-color'}`}>
       <div className="title-container">
         <h2>{title}</h2>
-        <select id="sort" className="sort-select" onChange={e => changeSorting(e)} value={sortBy}>
-          <option value="title-asc">Title &#8593;</option>
-          <option value="title-desc">Title &#8595;</option>
-          <option value="votes-asc">Votes &#8593;</option>
-          <option value="votes-desc">Votes &#8595;</option>
-        </select>
+        <div className="sort-select">
+          <span id="exp_elem">Sort by: </span>
+          <select id="sort" aria-labelledby="exp_elem" onChange={e => changeSorting(e)} value={sortBy}>
+            <option value="title-asc">Title &#8593;</option>
+            <option value="title-desc">Title &#8595;</option>
+            <option value="votes-asc">Votes &#8593;</option>
+            <option value="votes-desc">Votes &#8595;</option>
+          </select>
+        </div>
       </div>
       <div className="content-flex-scroller">
         <Suspense fallback={
