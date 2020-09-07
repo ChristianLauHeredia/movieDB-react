@@ -6,6 +6,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import HeartComponent from "./../heart";
 import Loader from 'react-loader-spinner';
 const PosterImageComponent = lazy(() => import("./../poster-image"));
+import { useTranslation } from 'react-i18next';
 import "./styles.scss";
 
 const urlBackdropImg = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces";
@@ -16,10 +17,17 @@ const DetailsScreen = props => {
   const [bgUrl, setBGUrl] = useState("");
   const [posterUrl, setPosterUrl] = useState("");
   const { id } = useParams();
+  const { t } = useTranslation();
 
   useEffect( () => {
     getMovie();
   }, []);
+
+  // Update when lang changes
+  useEffect( () => {
+    getMovie();
+  }, [t]);
+
 
   useEffect( () => {
     if(movie.backdrop_path) setBGUrl(`${urlBackdropImg}${movie.backdrop_path}`)
@@ -46,7 +54,7 @@ const DetailsScreen = props => {
   }
 
   // Return the details of the show
-  const detailsDataComponent = () => (
+  const detailsDataComponent = () => posterUrl ? (
     <>
       <h2>
         {movie.title}
@@ -64,16 +72,16 @@ const DetailsScreen = props => {
               text={movie.vote_average}
               background
             />
-            <span>User Score</span>
+            <span>{t("details.user-score")}</span>
           </div>
         )
       }
       <div className="overview-container">
-        <h3>Overview</h3>
+        <h3>{t("details.overview")}</h3>
         <p>{movie.overview}</p>
       </div>
     </>
-  )
+  ) : null
 
   const deskViewDetails = () => (
     <div className="details-data details-desk-container ">

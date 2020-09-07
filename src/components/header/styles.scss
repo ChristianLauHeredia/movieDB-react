@@ -1,3 +1,5 @@
+@import "./../../styles/colors";
+
 .header-container {
   position: fixed;
   top: 0;
@@ -18,7 +20,30 @@
     margin: 0 auto;
     .header-text {
       font-family: 'Orbitron', sans-serif;
-      color: white;
+      color: $primary-color;
+    }
+  }
+  .lang-container {
+    position: absolute;
+    right: 40px;
+    cursor: pointer;
+    align-items: center;
+    display: flex;
+    span {
+      color: $primary-color;
+      margin-right: 10px;
+    }
+    .language-btn {
+      padding: 0;
+      border: 0;
+      width: 40px;
+      height: 20px;
+      cursor: pointer;
+      margin-top: -8px;
+      img {
+        width: 100%;
+        margin-top: -8px;
+      }
     }
   }
 }

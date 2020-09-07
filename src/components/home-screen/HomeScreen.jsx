@@ -1,20 +1,23 @@
 import React from "react";
 import ContentScrollerComponent from "./../content-flex-scroller";
-import "./styles.scss";
+import { useTranslation } from 'react-i18next';
+  import "./styles.scss";
 
 const HomeScreen = () =>  {
+  const { t } = useTranslation();
+
   return (
     <>
       <ContentScrollerComponent
-        title="What's Popular"
+        title={t("titles.whats-popular")}
         customParams="/movie/popular"
       />
       <ContentScrollerComponent
-        title="Today's Trending"
+        title={t("titles.todays-trending")}
         customParams="/trending/all/day"
       />
       <ContentScrollerComponent
-        title="In Theaters"
+        title={t("titles.in-theaters")}
         customParams="/movie/now_playing"
       />
     </>

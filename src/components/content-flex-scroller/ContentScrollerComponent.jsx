@@ -2,21 +2,28 @@ import React, { useState, useEffect, lazy, Suspense } from "react";
 import { getCustomQuery } from "./../../services/data-request";
 import Loader from 'react-loader-spinner';
 const CardComponent = lazy(() => import("./../card"));
+import { useTranslation } from 'react-i18next';
 import "./styles.scss";
 
 const ContentScrollerComponent = props => {
   const { title, hasBackground, customParams, errorMsg="" } = props;
   const [movies, setMovies] = useState([]);
   const [sortBy, setSortBy] = useState("title-asc");
+  const { t } = useTranslation();
 
   useEffect( () => {
     getMovies()
   }, []);
 
+  // Update when lang changes
+  useEffect( () => {
+    getMovies();
+  }, [t]);
+
   // Get Shows data
   const getMovies = async () => {
     let newMovies = await getCustomQuery(customParams);
-    setMovies(newMovies ? movies.concat(newMovies) : movies);
+    setMovies(newMovies);
   }
 
   // Sort by function
@@ -52,12 +59,12 @@ const ContentScrollerComponent = props => {
       <div className="title-container">
         <h2>{title}</h2>
         <div className="sort-select">
-          <span id="exp_elem">Sort by: </span>
-          <select id="sort" aria-labelledby="exp_elem" onChange={e => changeSorting(e)} value={sortBy}>
-            <option value="title-asc">Title &#8593;</option>
-            <option value="title-desc">Title &#8595;</option>
-            <option value="votes-asc">Votes &#8593;</option>
-            <option value="votes-desc">Votes &#8595;</option>
+          <span id="sort-select">{t('scroller.sort-by')}</span>
+          <select id="sort" aria-labelledby="sort-select" onChange={e => changeSorting(e)} value={sortBy}>
+            <option value="title-asc">{t('scroller.title')} &#8593;</option>
+            <option value="title-desc">{t('scroller.title')} &#8595;</option>
+            <option value="votes-asc">{t('scroller.votes')} &#8593;</option>
+            <option value="votes-desc">{t('scroller.votes')} &#8595;</option>
           </select>
         </div>
       </div>
