@@ -1,4 +1,5 @@
 @import "./../../styles/media-queries";
+@import "./../../styles/colors";
 
 .content-scroller-container {
   width: 100%;
@@ -19,14 +20,28 @@
       text-align: center;
     }
   }
-  h2 {
-    font-size: 32px;
+  .title-container {
+    display: flex;
+    justify-content: space-between;
     max-width: 1300px;
-    padding-left: 20px;
-    margin: 0 auto 50px;
-    color: white;
-    @media (max-width: $breakpoint-mobile) {
-      font-size: 24px;
+    margin: 0 auto;
+    h2 {
+      font-size: 32px;
+      max-width: 1300px;
+      padding-left: 20px;
+      color: $primary-color;
+      @media (max-width: $breakpoint-mobile) {
+        font-size: 24px;
+      }
+    }
+    .sort-select {
+      background-color: transparent;
+      color: $primary-color;
+      border: none;
+      font-size: 18px;
+      margin-right: 20px;
+      cursor: pointer;
+      margin: auto 20px;
     }
   }
 }
