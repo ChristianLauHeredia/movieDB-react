@@ -1,0 +1,15 @@
+@import "./../../styles/colors";
+
+.page-not-found-container {
+  color: $primary-color;
+  height: 100vh;
+  padding-top: 64px;
+  display: flex;
+  h2 {
+    margin: auto;
+    span {
+      font-size: 36px;
+      margin-right: 20px;
+    }
+  }
+}
